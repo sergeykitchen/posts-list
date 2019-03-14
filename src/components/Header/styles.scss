@@ -4,20 +4,18 @@
   &_container {
     padding: 10px 20px;
     height: 60px; 
-    max-width: 1200px;
-    margin: auto;
     display: flex;
     align-items: center;
   }
 
   &_link {
-    font-family: "Comic Sans MS", cursive, sans-serif;
     text-decoration: none;
     color: #2000ff;
     opacity: .8;
     font-weight: 700;
     text-transform: uppercase;
     text-shadow: 1px 1px #202157;
+
     &:hover {
       opacity: 1;
     }

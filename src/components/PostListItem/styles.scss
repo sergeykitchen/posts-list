@@ -1,0 +1,28 @@
+.list-item {
+  border-radius: 5px;
+  background-color: #c3cee6;
+  margin-top: 30px;
+  padding: 15px 25px;
+
+  & + .list-item {
+    margin-top: 12px;
+  }
+
+  &_title {
+    font-weight: 700;
+    color: #348295;
+    text-decoration: none;
+  }
+
+  &_tag {
+    margin: 8px 0 12px;
+    font-size: 12px;
+    color: #1f5f6e
+  }
+
+  &_about {
+    font-size: 14px;
+    color: #464c4e;
+  }
+
+}
