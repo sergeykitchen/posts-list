@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="header">
       <div className="header_container">
-        <Link className="header_link" to="/">Posts list</Link>
+        <Link className="header_link" to="/">home</Link>
       </div>
     </div>
   );
