@@ -5,3 +5,5 @@ export const GET_POSTS_ERROR = 'GET_POSTS_ERROR';
 export const GET_TAGS_REQUEST = 'GET_TAGS_REQUEST';
 export const GET_TAGS_SUCCESS = 'GET_TAGS_SUCCESS';
 export const GET_TAGS_ERROR = 'GET_TAGS_ERROR';
+
+export const SET_FILTER = 'SET_FILTER';

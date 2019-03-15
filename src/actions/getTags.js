@@ -22,7 +22,7 @@ const getTagsError = (err) => ({
 
 export const getTags = () => dispatch => {
   dispatch(getTagsRequest());
-  return Api.getTags()
+  Api.getTags()
     .then(({ data }) => {
       dispatch(getTagsSuccess(data));
     })

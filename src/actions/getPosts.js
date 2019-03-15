@@ -2,6 +2,7 @@ import {
   GET_POSTS_REQUEST,
   GET_POSTS_SUCCESS,
   GET_POSTS_ERROR,
+  SET_FILTER,
 } from '../constants';
 import API from '../api';
 
@@ -21,7 +22,7 @@ const getPostsError = err => ({
 
 export const getPosts = () => dispatch => {
   dispatch(getPostsRequest());
-  return API.getPosts()
+  API.getPosts()
     .then(({ data }) => {
       dispatch(getPostsSuccess(data))
     })
@@ -29,3 +30,8 @@ export const getPosts = () => dispatch => {
       dispatch(getPostsError(message));
     });
 };
+
+export const setFilter = filter => ({
+  type: SET_FILTER,
+  payload: filter,
+});

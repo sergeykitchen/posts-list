@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import { connect } from 'react-redux';
 import Select from 'react-select';
-import { getPosts } from '../../actions/getPosts';
+import { getPosts, setFilter } from '../../actions/getPosts';
 import { getTags } from '../../actions/getTags';
+import {filteredPosts} from '../../selector';
 import PostListItem from '../../components/PostListItem';
 import Loader from '../../components/Loader';
 
@@ -35,8 +36,18 @@ class MaimPage extends Component {
     });
   };
 
+  setOptions = () => {
+    return R.map(item => (
+      { label: item.label, value: item.id, }
+    ))(this.props.tags);
+  };
+
+  selectHandler = (filter) => {
+    this.props.setFilter(R.map(i => i.value, filter));
+  }
+
   render() {
-    const { loading, tags } = this.props;
+    const { loading } = this.props;
     return (
       <div className="container">
         <h2 className="page-title">posts list</h2>
@@ -44,16 +55,18 @@ class MaimPage extends Component {
           loading
             ? <Loader />
             : <div>
-              <div className="select-container">
-                <Select
-                  placeholder="Select the tags..."
-                  options={tags}
-                />
+                <div className="select-container">
+                  <Select
+                    placeholder="Select the tags..."
+                    options={this.setOptions()}
+                    isMulti
+                    onChange={this.selectHandler}
+                  />
+                </div>
+                <ul>
+                  {this.setPosts()}
+                </ul>
               </div>
-              <ul>
-                {this.setPosts()}
-              </ul>
-            </div>
         }
       </div>
     );
@@ -61,13 +74,12 @@ class MaimPage extends Component {
 };
 
 const mapStateToProps = state => {
-  const { posts } = state.posts;
   const { tags } = state.tags;
   const loading = state.posts.loading || state.tags.loading;
 
   return {
     loading,
-    posts,
+    posts: filteredPosts(state),
     tags,
   };
 };
@@ -76,6 +88,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getPosts: () => dispatch(getPosts()),
     getTags: () => dispatch(getTags()),
+    setFilter: filter => dispatch(setFilter(filter)),
   };
 };
 
