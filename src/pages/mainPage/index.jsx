@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Select from 'react-select';
 import { getPosts } from '../../actions/getPosts';
 import PostListItem from '../../components/PostListItem';
 import Loader from '../../components/Loader';
@@ -31,6 +32,12 @@ class MaimPage extends Component {
     return (
       <div className="container">
         <h2 className="page-title">posts list</h2>
+        <div className="select-container">
+          <Select
+            placeholder="Select the tags..."
+            options={[]}
+          />
+        </div>
         {
           loading
             ? <Loader />
