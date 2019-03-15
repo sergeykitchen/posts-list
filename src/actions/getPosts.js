@@ -21,11 +21,11 @@ const getPostsError = err => ({
 
 export const getPosts = () => dispatch => {
   dispatch(getPostsRequest());
-  API.getPosts()
+  return API.getPosts()
     .then(({ data }) => {
       dispatch(getPostsSuccess(data))
     })
     .catch(({ message }) => {
       dispatch(getPostsError(message));
     });
-}
+};
