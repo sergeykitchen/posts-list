@@ -38,6 +38,11 @@ class MaimPage extends Component {
 
   selectHandler = (filter) => {
     this.props.setFilter(R.map(i => i.value, filter));
+  };
+
+  setDefaultValue = () => {
+    const { filter } = this.props;
+    return this.setOptions().filter(i => filter.includes(i.value));
   }
 
   render() {
@@ -55,6 +60,7 @@ class MaimPage extends Component {
                   options={this.setOptions()}
                   isMulti
                   onChange={this.selectHandler}
+                  defaultValue={this.setDefaultValue()}
                 />
               </div>
               <ul>
@@ -69,12 +75,15 @@ class MaimPage extends Component {
 
 const mapStateToProps = state => {
   const { tags } = state.tags;
+  const { filter } = state.posts;
+
   const loading = state.posts.loading || state.tags.loading;
 
   return {
     loading,
     posts: filteredPosts(state),
     tags,
+    filter
   };
 };
 
