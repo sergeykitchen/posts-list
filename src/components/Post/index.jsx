@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const Post = ({ data, tags }) => {
+const Post = ({ data, tags, showModal }) => {
   return (
     <div className="container">
       <div className="post-container">
@@ -22,7 +22,7 @@ const Post = ({ data, tags }) => {
         <p className="post-container_name">
           by &nbsp; 
           <span
-            onClick={() => { }}
+            onClick={showModal}
           >
             {data.name.first} {data.name.last}
           </span>

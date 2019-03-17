@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPost } from '../../actions/getPost';
 import getTagsLabel from '../../utils/getTagsLabel';
+import AuthorInfoModal from '../../components/AuthorInfoModal';
 import Loader from '../../components/Loader';
 import Post from '../../components/Post';
 
 export class PostPage extends Component {
+
+  constructor() {
+    super();
+    this.authorModal = React.createRef();
+  }
 
   componentDidMount() {
     const { getPost, match, currentPost } = this.props;
@@ -15,13 +21,21 @@ export class PostPage extends Component {
     }
   }
 
+  showModal = () => {
+    this.authorModal.current.show();
+  }
+
   render() {
     const { currentPost, loading, tagsLabels } = this.props;
     return (
       <div>
         {loading
           ? < Loader />
-          : currentPost && <Post tags={tagsLabels} data={currentPost} />
+          : currentPost &&
+          <div>
+            <Post showModal={this.showModal} tags={tagsLabels} data={currentPost} />
+            <AuthorInfoModal ref={this.authorModal} name={currentPost.name} phone={currentPost.phone} />
+          </div>
         }
       </div>
     );

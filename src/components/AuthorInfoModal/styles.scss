@@ -1,0 +1,19 @@
+.modal {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 130px;
+
+  &_close {
+    cursor: pointer;
+  }
+
+  &_user-info {
+    color: #1f5f6e;
+    font-weight: 700;
+    + .modal_user-info {
+      margin-top: 20px;
+    }
+  }
+}
