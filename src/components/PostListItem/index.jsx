@@ -21,7 +21,10 @@ const PostListItem = (props) => {
 };
 
 PostListItem.propTypes = {
-
+  title: PropTypes.string,
+  about: PropTypes.string,
+  id: PropTypes.string,
+  tags: PropTypes.array,
 };
 
 export default PostListItem;

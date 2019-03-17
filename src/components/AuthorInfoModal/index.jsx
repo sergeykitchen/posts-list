@@ -51,7 +51,10 @@ export class AuthorInfoModal extends Component {
     );
   };
 };
-AuthorInfoModal.propTypes = {
 
-}
+AuthorInfoModal.propTypes = {
+  name: PropTypes.object,
+  phone: PropTypes.string,
+};
+
 export default AuthorInfoModal

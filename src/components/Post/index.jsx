@@ -33,7 +33,9 @@ const Post = ({ data, tags, showModal }) => {
 };
 
 Post.propTypes = {
-
+  showModal: PropTypes.func,
+  tags: PropTypes.array,
+  data: PropTypes.object,
 };
 
 export default Post;

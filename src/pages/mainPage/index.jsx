@@ -86,7 +86,11 @@ const mapDispatchToProps = dispatch => {
 };
 
 MaimPage.propTypes = {
-
+  loading: PropTypes.bool,
+  tags: PropTypes.array,
+  posts: PropTypes.array,
+  getPosts: PropTypes.func,
+  setFilter: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MaimPage);

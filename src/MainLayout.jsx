@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getTags } from './actions/getTags';
 
@@ -22,5 +23,9 @@ const mapDispatchToProps = dispatch => {
     getTags: () => dispatch(getTags()),
   };
 };
+
+MainLayout.propTypes = {
+  getTags: PropTypes.func,
+}
 
 export default connect(null, mapDispatchToProps)(MainLayout);

@@ -43,18 +43,20 @@ export class PostPage extends Component {
 };
 
 PostPage.propTypes = {
-
-}
+  loading: PropTypes.bool,
+  tagsLabels: PropTypes.array,
+  currentPost: PropTypes.object,
+  getPost: PropTypes.func,
+};
 
 const mapStateToProps = (state, props) => {
   const { posts, loading } = state.posts;
   const { tags } = state.tags;
   const { id } = props.match.params;
-  const currentPost = posts.find(post => post.id === id)
+  const currentPost = posts.find(post => post.id === id);
   return {
     loading,
-    tagsLabels: currentPost && getTagsLabel(currentPost.tags, tags),
-    posts,
+    tagsLabels: currentPost ? getTagsLabel(currentPost.tags, tags) : [],
     currentPost: currentPost,
   };
 };
