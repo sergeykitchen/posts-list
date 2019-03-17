@@ -1,10 +1,7 @@
 @import '../../mixins.scss'; 
-.list-item {
+.post-container {
   @include post-container;
-
-  & + .list-item {
-    margin-top: 12px;
-  }
+  
 
   &_title {
     font-weight: 700;
@@ -18,9 +15,24 @@
     color: #1f5f6e
   }
 
-  &_about {
+  &_text {
     font-size: 14px;
     color: #464c4e;
   }
 
+  &_name {
+    margin-top: 10px;
+    text-align: right;
+    color: #348295;
+    
+    & span {
+      font-weight: 700;
+      cursor: pointer;
+      opacity: .8;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 }

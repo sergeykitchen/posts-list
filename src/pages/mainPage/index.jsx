@@ -4,33 +4,27 @@ import * as R from 'ramda';
 import { connect } from 'react-redux';
 import Select from 'react-select';
 import { getPosts, setFilter } from '../../actions/getPosts';
-import { getTags } from '../../actions/getTags';
-import {filteredPosts} from '../../selector';
+import { filteredPosts } from '../../selector';
 import PostListItem from '../../components/PostListItem';
 import Loader from '../../components/Loader';
+import getTagsLabel from '../../utils/getTagsLabel';
 
 class MaimPage extends Component {
 
   componentDidMount() {
-    const { posts, getPosts, getTags } = this.props;
-    if (posts.length === 0) {
-      getPosts();
-      getTags();
-    }
+    const { getPosts } = this.props;
+    getPosts();
   };
 
   setPosts = () => {
+    const { tags } = this.props;
     return this.props.posts.map(item => {
-      const tags = R.compose(
-        R.map(item => item.label),
-        R.filter(i => ~R.indexOf(i.id, item.tags))
-      )(this.props.tags);
 
       return <PostListItem
         key={item.id}
         id={item.id}
         title={item.title}
-        tags={tags}
+        tags={getTagsLabel(item.tags, tags)}
         about={item.about}
       />
     });
@@ -55,18 +49,18 @@ class MaimPage extends Component {
           loading
             ? <Loader />
             : <div>
-                <div className="select-container">
-                  <Select
-                    placeholder="Select the tags..."
-                    options={this.setOptions()}
-                    isMulti
-                    onChange={this.selectHandler}
-                  />
-                </div>
-                <ul>
-                  {this.setPosts()}
-                </ul>
+              <div className="select-container">
+                <Select
+                  placeholder="Select the tags..."
+                  options={this.setOptions()}
+                  isMulti
+                  onChange={this.selectHandler}
+                />
               </div>
+              <ul>
+                {this.setPosts()}
+              </ul>
+            </div>
         }
       </div>
     );
@@ -87,7 +81,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getPosts: () => dispatch(getPosts()),
-    getTags: () => dispatch(getTags()),
     setFilter: filter => dispatch(setFilter(filter)),
   };
 };
