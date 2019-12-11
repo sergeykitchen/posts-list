@@ -18,8 +18,13 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://posts-list.herokuapp.com/index.html",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "Scope": "/",
+  "serviceworker": {
+    "src": "service-worker.js",
+    "scope": "/"
+  }
 }
